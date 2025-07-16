@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to Excel Converter</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        .card-header {
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 20px;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            border: none;
+            padding: 10px 25px;
+            font-weight: 600;
+        }
+        .form-control:focus {
+            border-color: #4b6cb7;
+            box-shadow: 0 0 0 0.25rem rgba(75, 108, 183, 0.25);
+        }
+        .upload-icon {
+            font-size: 4rem;
+            color: #4b6cb7;
+            margin-bottom: 20px;
+        }
+        .container-max {
+            max-width: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container container-max">
+        <div class="card">
+            <div class="card-header text-center">
+                <h1 class="h3 mb-0">Louzan Report Converter</h1>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <div class="upload-icon">
+                        <i class="bi bi-file-earmark-arrow-up"></i>
+                    </div>
+                    <p class="text-muted">Upload a CSV file to convert it to Excel format</p>
+                </div>
+                
+                <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="id_file" class="form-label fw-bold">Select CSV File</label>
+                        <input type="file" class="form-control" name="file" required id="id_file" accept=".csv">
+                        <div class="invalid-feedback">
+                            Please select a CSV file
+                        </div>
+                        <div class="form-text">
+                            Only .csv files are accepted (Max size: 5MB)
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-cloud-arrow-down me-2"></i>Convert & Download Excel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center text-muted py-3">
+                <small>Processed files are not stored on our servers </small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <script>
+        // Form validation
+        (() => {
+          'use strict'
+          const forms = document.querySelectorAll('.needs-validation')
+          Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+              form.classList.add('was-validated')
+            }, false)
+          })
+        })()
+    </script>
+</body>
+</html>

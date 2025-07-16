@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    container_name: louzan_web
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    environment:
+      DJANGO_ALLOWED_HOSTS: "docmagic-demo.cyret.com,129.213.45.111,localhost,127.0.0.1"
+      DJANGO_URL: "https://docmagic-demo.cyret.com"
+      DJANGO_CORS_ALLOWED_ORIGINS: "https://docmagic-demo.cyret.com"
+      DJANGO_CORS_ALLOWED_HOSTS: "https://docmagic-demo.cyret.com"
+      DJANGO_DEBUG: "False"
