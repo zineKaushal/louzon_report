@@ -87,3 +87,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://docmagic-demo.cyret.com',
+    'http://localhost:8000',  # If testing locally
+]
